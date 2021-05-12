@@ -47,8 +47,12 @@ int L2Search(Array A,int key){
 }
 
 int main(){
+    int key;
     Array A={{2,3,4,5,6},10,5};
-
-
+    cout<<"\nEnter the element you want to search for: "<<endl;
+    cin>>key;
+    cout<<"\nThe key is present at index using Simple Linear Seach: "<<LSearch(A,key)<<endl;
+    cout<<"\nThe key is present at index using Transposition Technique: "<<L1Search(A,key)<<endl;
+    cout<<"\nThe key is present at index using Move to front Technique: "<<L2Search(A,key)<<endl;    
     return 0;
 }

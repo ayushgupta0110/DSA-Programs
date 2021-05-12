@@ -7,9 +7,9 @@ class Array{
             int len;
 };
 
-void display(Array A){
-    for(int i=0;i<A.len;i++)
-       cout<<"\n"<<A.arr[i]<<" "<<endl;
+void display(Array *A){
+    for(int i=0;i<A->len;i++)
+       cout<<A->arr[i]<<" ";
 }
 
 void append(Array *A,int x){
@@ -38,7 +38,23 @@ void Delete(Array *A,int index){
 }
 
 int main(){
+    int x,indx;
     Array A={{2,3,4,5,6},10,5};
-
-
+    display(&A);
+    cout<<"\nEnter element to Append: ";
+    cin>>x;
+    append(&A,x);
+    cout<<"\nThe updated Array is: ";
+    display(&A);
+    cout<<"\nEnter element to insert at an index(element,index): ";
+    cin>>x>>indx;
+    Insert(&A,x,indx);
+    cout<<"\nThe updated Array is: ";
+    display(&A);
+    cout<<"\nEnter the index from which you want to delete the element: ";
+    cin>>indx;
+    Delete(&A,indx);
+    cout<<"\nThe updated Array is: ";
+    display(&A);
+    return 0;
 }
