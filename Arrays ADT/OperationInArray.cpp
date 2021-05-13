@@ -9,8 +9,7 @@ public:
     int len;
 };
 
-void display(Array *A)
-{
+void display(Array *A){
     for (int i = 0; i < A->len; i++)
         cout << A->arr[i] << " ";
 }
@@ -46,7 +45,20 @@ void Delete(Array *A, int index)
     }
 }
 
-//     MORE OPERATIONS IN ARRAY
+void swap(int *x,int *y){
+    int temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+}
+
+/*    MORE OPERATIONS IN ARRAY
+    1. Get() 
+    2. Set()
+    3. Max(),Min()
+    4. Sum()
+    5. Average()
+*/
 int Get(Array A, int index)
 {
     if (index >= 0 && index < A.len)
@@ -92,6 +104,52 @@ int Sum(Array A)
 float Avg(Array A)
 {
     return (float)Sum(A) / A.len;
+}
+
+/*   MORE OPERATIONS ON ARRAY 
+    1. Reverse an array
+    2  Inserting in a sorted array 
+    3. Arranging negative numbers on left side
+    4. Left/right shift
+    5. Left/right rotate
+*/
+
+void Reverse(Array *A){
+    
+    for(int i=0,j=A->len-1;i<j;i++,j--){
+        swap(&A->arr[i],&A->arr[j]);            
+    }
+}
+
+void InsertSort(Array *A,int x){
+
+    int i=A->len-1;
+    while(A->arr[i]>=0 && A->arr[i]>x){
+        A->arr[i+1]=A->arr[i];
+        i--;
+    }
+    A->arr[i+1]=x;
+    A->len++;
+}
+
+bool isSorted(Array A){
+
+    for(int i=0;i<A.len-1;i++){
+       if(A.arr[i]>A.arr[i+1])
+        return false;
+    }    
+    return true;
+}
+
+void ArrangeNegativeNos(Array *A){
+
+    int i=0,j=A->len-1;
+    while(i<j){
+        while(A->arr[i]<0)i++;
+        while(A->arr[j]>=0)j--;
+
+        swap(&A->arr[i],&A->arr[j]);
+    }
 }
 
 int main()
