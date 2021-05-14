@@ -242,6 +242,14 @@ Array *Array::Merge(Array arr2)
     arr3->length = length + arr2.length;
     return arr3;
 }
+
+/*----------------------------------------------------------------
+    Operations on sorted arrays
+    Union 
+    Intersection
+    Difference
+    
+*/
 Array *Array::Union(Array arr2)
 {
     int i, j, k;
@@ -308,6 +316,8 @@ Array *Array::Diff(Array arr2)
     arr3->length = k;
     return arr3;
 }
+
+
 int main()
 {
     Array *arr1;
