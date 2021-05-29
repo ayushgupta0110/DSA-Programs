@@ -13,7 +13,7 @@ class LowerDiagonal
         }
         LowerDiagonal(int n){
             this->n=n;
-            A=new int[n];
+            A=new int[(n*(n+1)/2)];
         }
         ~LowerDiagonal(){
             delete []A;
