@@ -2,6 +2,7 @@
 */
 #include<iostream>
 #include<stdlib.h>
+#include<math.h>
 using namespace std;
 
 class Term{
@@ -15,10 +16,10 @@ class Poly{
     public: 
         void create(){
         
-            cout<<"\nEnter the number of t: ";
+            cout<<"\nEnter the number of terms: ";
             cin>>this->n;
             this->t = new Term[this->n];
-            cout<<"\nEnter the Polynomial t: ";
+            cout<<"\nEnter the Polynomial term: ";
             for(int i=0; i<this->n;i++){
                 cout<<"\nEnter "<<i+1<<" term: ";
                 cin>>this->t[i].coeff;
@@ -48,10 +49,10 @@ class Poly{
         }
 
         Poly* operator +(Poly const &p2){
-            int i,j,k;
+            int i=0,j=0,k=0;
             Poly *sum = new Poly;
             sum->t =new Term[this->n+p2.n];
-            int i=j=k=0;
+            
             while(i<this->n && j<p2.n)
             {
                 if(this->t[i].exp>p2.t[j].exp)
@@ -84,5 +85,7 @@ int main()
     p3=p1+p2;
     cout<<"The Sum of the two Polynomials entered is: "<<endl;
     p3->display();
+    cout<<endl;
+    p3->evaluate();
     return 0;
 }
