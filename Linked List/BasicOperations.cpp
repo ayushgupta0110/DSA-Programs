@@ -16,8 +16,17 @@ class LinkedList
         ~LinkedList();
         void Display();
         void Insert(int index,int x);
+        void Insert_Sort(int x);
         int Delete(int index);
         int Length();
+        int Max(Node *p);
+        int Sum(Node *p);
+        bool IsSorted();
+        void remove_dup();
+        void reverse();
+        void R_reverse(Node*,Node*);
+        bool isLoop(Node*);
+        Node* Search(Node *p,int key);
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -76,7 +85,7 @@ void LinkedList::Insert(int index,int x){
         first=t;
     }
     else{
-        for(int i=0;i<index-1;i++)
+        for(int i=0;i<index-1 && p;i++)
             p=p->next;
         t->next=p->next;
         p->next=t;
@@ -108,6 +117,111 @@ int LinkedList::Delete(int index){
 return x;
 }
 
+Node* LinkedList::Search(Node* p,int key){
+    while(p!=NULL){
+        if(key==p->data){
+            return p;
+        }
+        p=p->next;
+    }
+    return NULL;
+}
+
+int LinkedList::Sum(Node* p){
+    int sum=0;
+    while(p){
+        sum+=p->data;
+        p=p->next;
+    }
+    return sum;
+}
+
+int LinkedList::Max(Node* p){
+    int max=-32768;
+    while(p){
+        if(p->data>max){
+            max=p->data;
+        }
+        p=p->next;
+    }
+    return max;
+}
+
+void LinkedList::Insert_Sort(int x){
+    Node *q=NULL,*p=first,*t;
+    while(p){
+        if(p->data>x){
+            t->data=x;
+            q->next=t;
+            t->next=p;
+        }
+    q=p;
+    p=p->next;    
+    }
+}
+
+bool LinkedList::IsSorted(){
+    Node *p=first;
+    int x=-32768;
+    while(p){
+        if(p->data>x)
+            x=p->data;
+        else
+            return false;
+    p=p->next;       
+    }
+    return true;            
+}
+
+void LinkedList::remove_dup(){
+    Node* p=first,*q=first->next;
+    while(q){
+        if(p->data != q->data){
+            p=q;
+            q=q->next;
+        }
+        else{
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    }
+}
+
+//Reversing the Links in a LinkedList using Sliding Pointers
+void LinkedList::reverse(){
+    Node *p=first,*q=NULL,*r=NULL;
+    while(p){
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }    
+    first=q;
+}
+
+//Reversing the links in a LinkedList using Recursion
+void LinkedList::R_reverse(Node* q,Node* p){
+    if(p){
+        R_reverse(p,p->next);
+        p->next=q;
+    }else{
+        first=q;
+    }
+}
+
+bool LinkedList::isLoop(Node* f){
+    Node *p,*q=NULL;
+    p=q=f;
+    do{
+        p=p->next;
+        q=q->next;
+        q=q?q->next:NULL;
+    }while(p && q && p!=q);
+
+    if(p==q)return true;
+    else return false;
+}
 
 int main()
 {
