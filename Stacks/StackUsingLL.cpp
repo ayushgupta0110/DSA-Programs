@@ -24,6 +24,9 @@ public:
     int pop();
     void Display();
     int peek(int pos);
+    bool isEmpty();
+    bool isFull();
+    int StackTop();
 };
 
 void Stack::push(int x){
@@ -68,6 +71,23 @@ int Stack::peek(int pos){
         delete p;
     }
     return -1;
+}
+
+int Stack::StackTop(){
+    if(top)
+       return top->data;
+    return -1;   
+}
+
+bool Stack::isEmpty(){
+    return top? false:true;
+}
+
+bool Stack::isFull(){
+    Node *t=new Node;
+    bool r= t? false:true;
+    delete t;
+    return r;
 }
 
 int main()
