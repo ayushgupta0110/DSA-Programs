@@ -28,6 +28,7 @@ public:
     bool isFull();
     bool isEmpty();
     void display();
+    T stackTop();
 };
 
 template<class T>
@@ -60,6 +61,13 @@ int Stack<T>::peek(int pos){
     else{
         return stk[index];
     }
+}
+
+template<class T>
+T Stack<T>::stackTop(){
+    if(top==-1)return -1;
+    else
+        return stk[top];
 }
 
 template<class T>
