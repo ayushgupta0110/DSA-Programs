@@ -31,7 +31,6 @@ int Queue::dequeue(){
     else{
         front= (front+1)%size;
         x=Q[front];
-        front++;
     }
 return x;
 }
@@ -40,6 +39,7 @@ void Queue::Display(){
     int i=front+1;
     do{
         cout<<Q[i]<<" ";
+        i++;
     }while(i!=(rear+1)%size);
     cout<<endl;
 }
